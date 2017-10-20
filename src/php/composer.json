@@ -1,0 +1,16 @@
+{
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    },
+    "require": {
+        "silex/silex": "~2.0",
+        "symfony/form": "~3.0",
+        "twig/twig": "^1.30",
+        "rollbar/rollbar": "~0.18.2",
+        "monolog/monolog": "~1.22.0",
+        "devster/ubench": "1.2.0",
+        "philiplb/phpprom": "0.1.0"
+    }
+}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="css/score.css">
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="row small-12 columns align-center">
+            <h1>Tableau des scores</h1>
+        </div>
+        <div class="row small-12 columns">
+            <table class="hover">
+                <thead>
+                <tr>
+                    <th width="200">Joueur</th>
+                    <th>Nombre de victoires</th>
+                    <th>Nombre de parties</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.email }}</td>
+                        <td>{{ player.victoryCounter }}</td>
+                        <td>{{ player.gameCounter }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

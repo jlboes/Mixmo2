@@ -1,0 +1,19 @@
+
+{% set turnLeft = gameDataArray.data.Game.turnLeft %}
+{% set turns = gameDataArray.data.Game.turns %}
+{% if turns > 0 %}
+    {% set percent = 100-turnLeft/turns*100 %}
+{% else %}
+    {% set percent = 0 %}
+{% endif %}
+
+{% set color = "success" %}
+{% if percent > 80 %}
+    {% set color = "alert" %}
+{% elseif percent > 60 %}
+    {% set color = "warning" %}
+{% endif %}
+
+<div id="turnLeft" class="{{ color }} progress" role="progressbar" tabindex="0" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuetext="toto" aria-valuemax="{{ turnLeft }}">
+    <div class="progress-meter" style="width: {{ percent }}%"><p class="progress-meter-text">{{ turnLeft }}</p></div>
+</div>

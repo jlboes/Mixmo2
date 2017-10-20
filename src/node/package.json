@@ -1,0 +1,29 @@
+{
+  "name": "vf",
+  "description": "express and socket.io server",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.14.0",
+    "socket.io": "1.0",
+    "cors": "2.8.1",
+    "request": "2.79.0 ",
+    "body-parser": "1.16.1",
+    "foundation-sites": "6.3.0",
+    "motion-ui": "1.2.2",
+    "rollbar": "0.6.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "gulp": "3.9.1",
+    "gulp-nodemon": "2.2.1 ",
+    "gulp-sass": "3.1.0",
+    "gulp-uglify": "2.0.1",
+    "gulp-strip-debug": "1.1.0",
+    "gulp-gzip": "1.4.0",
+    "gulp-concat": "2.6.1"
+  },
+  "scripts": {
+    "start": "npm install; gulp",
+    "gulp-browser-sync": "gulp default"
+  }
+}

@@ -1,0 +1,9 @@
+<div>
+	<ul class="flash-messages">
+	{% for label, flashes in app.session.flashbag.all %}
+	    {% for flash in flashes %}
+	        <li class="alert alert-{{ label }}">{{ flash }}</li>
+	    {% endfor %}
+	{% endfor %}
+	</ul>
+</div>

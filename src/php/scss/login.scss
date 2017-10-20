@@ -1,0 +1,37 @@
+@import 'foundationwrapper';
+
+// Default medium-gray color
+$medium-gray: #cacaca;
+// Default global padding
+$global-padding: 1rem;
+// Global value used for all elements that have a border radius.
+$global-radius: 3px;
+
+// Setting the form border color
+$form-border-color: $medium-gray;
+// Setting the form padding
+$form-padding: $global-padding;
+// Setting the form border radius
+$form-radius: $global-radius;
+
+.title{
+  font-size: 50px;
+  @include breakpoint(medium) {
+    font-size: 30px;
+  }
+  @include breakpoint(small down) {
+    font-size: 13px;
+  }
+}
+
+.home-forms {
+  border: 1px solid $form-border-color;
+  padding: $form-padding;
+  margin: 10px;
+  border-radius: $form-radius;
+  background-color: #f7f7f7;
+}
+
+body{
+  background-color: #eeeeee;
+}

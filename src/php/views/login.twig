@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+	 {{ parent() }}
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+{% endblock %}
+
+{% block body %}
+	{% include 'flashMessages.twig' %}
+	<div class="row column align-center title">
+	    <h1>Bienvenue sur Mixmo !</h1>
+	</div>
+	<div class="row align-center expanded">
+	    <div class="medium-11 medium-centered large-5 large-centered columns home-forms">
+	        <form name="login" action="/login" method="post">
+	            <div class="row column">
+	                <h1 class="text-center">Connexion</h1>
+	            </div>
+	            <div class="row">
+	                <div class="medium-11 columns">
+	                    <label>Email
+	                        <input type="text" name="email" id="login-email" placeholder="Votre login"/>
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="medium-11 columns">
+	                    <label>Password
+	                        <input type="password" name="password" id="login-password" placeholder="Votre mot de passe"
+	                               class="expanded"/>
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="row columns">
+	                <input type="submit" class="button expanded" value="Valider"/>
+	            </div>
+	        </form>
+	    </div>
+	    <div class="medium-11 medium-centered large-5 large-centered columns home-forms">
+	        <form name="signup" action="/signup" method="post">
+	            <div class="row column">
+	                <h1 class="text-center">Inscription</h1>
+	            </div>
+	            <div class="row">
+	                <div class="medium-11 columns">
+	                    <label>Email
+	                        <input type="text" name="email" placeholder="Votre login"/>
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="medium-11 columns">
+	                    <label>Password
+	                        <input type="password" name="password" placeholder="Votre mot de passe"
+	                               class="expanded"/>
+	                    </label>
+	                </div>
+	            </div>
+	            <div class="row columns">
+	                <input type="submit" class="button expanded" value="Valider"/>
+	            </div>
+	        </form>
+	    </div>
+	</div>
+	
+	<script src="js/zepto.min.js"></script>
+{% endblock %}
+

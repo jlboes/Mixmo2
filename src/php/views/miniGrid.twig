@@ -1,0 +1,15 @@
+{% if gridOk %}
+<table id="board-table" class="board-table">
+    {% for x in min_x..max_x %}
+        <tr>
+            {% for y in min_y..max_y %}
+                <td data-x="{{ x }}" data-y="{{ y }}" data-id="" class="letterTile">
+                    <div class="board-tile">
+                        {{ letters[x][y] }}
+                    </div>
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% endif %}

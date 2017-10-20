@@ -1,0 +1,20 @@
+{% set players = gameDataArray.data.Game.playerList %}
+
+<div class="reveal players-popin" id="playerGridPopin" data-reveal data-overlay="false">
+    <div class="row small-12 columns">
+        <select id="gridPlayerId">
+            {% for player in players %}
+                {% if player.id !=  user.id  %}
+                    <option value="{{ player.id }}" data-name="{{ player.email }}">{{ player.email }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <a class="button" id="gridGoBtn">Voir</a>
+    </div>
+    <div class="row small-12 columns">
+        <p><i class="material-icons">info</i> S'il manque des joueurs dans la liste, il faut recharger la page.</p>
+    </div>
+    <div class="row small-12 columns" id="playerGridView">
+        <img src="images/start.gif" alt="game is starting" class="loading-grid"/>    
+    </div>
+</div>

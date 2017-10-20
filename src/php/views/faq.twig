@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="css/faq.css">
+{% endblock %}
+
+{% block body %}
+    <div class="row column">
+        <div class="row small-12 columns">
+            <div class="row small-12 columns">
+                <h2>Je ne peux pas cliquer sur le bouton Mixmo</h2>
+            </div>
+            <div class="row small-12 columns">
+                <ul>
+                    <li>Votre grille contient des mots qui ne sont pas valides.</li>
+                    <li>Tout les mots de votre grille ne se touchent pas.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row small-12 columns">
+            <div class="row small-12 columns">
+                <h2>Mon mot n'est pas valide</h2>
+                <div class="row small-12 columns">
+                </div>
+            </div>
+        </div>
+        <div class="row small-12 columns">
+            <div class="row small-12 columns">
+                <h2>J'ai trouvé un bug</h2>
+            </div>
+            <div class="row small-12 columns">
+                <p>
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+	 {{ parent() }}
+    <script src="js/home.js"></script>
+{% endblock %}

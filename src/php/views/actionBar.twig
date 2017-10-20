@@ -1,0 +1,15 @@
+<div class="expanded button-group">
+    <a id="quitGame" class="alert button"><i class="material-icons show-for-small-only">close</i><span class="show-for-large">Quitter le jeu</span></a>
+    <a id="resetGame" class="warning button"><i class="material-icons show-for-small-only">replay</i><span class="show-for-large">Relancer la partie</span></a>
+    {% if isOpen %}
+        <a id="startGame" class="button"><i class="material-icons show-for-small-only">games</i><span class="show-for-large">Lancer la partie (les autres joueurs ne pourront plus rejoindre)</span></a>
+        {% if isNotEnded %}
+            <a class="success button" id="mixmo" style="display: none" disabled="true"><i class="material-icons show-for-small-only">check</i><span class="show-for-large">Mixmo !</span></a>
+        {% endif %}
+    {% else %}
+        {% if isNotEnded %}
+            <a class="success button" id="mixmo" disabled="true"><i class="material-icons show-for-small-only">check</i><span class="show-for-large">Mixmo !</span></a>
+        {% endif %}
+    {% endif %}
+</div>
+<img src="images/start.gif" alt="game is starting" class="loading-game"/>

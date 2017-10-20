@@ -1,0 +1,28 @@
+.chat-log {
+  //width: 100%;
+  height: 240px;
+  border: 1px solid #f7f7f7;
+}
+
+.log {
+  height: calc(100% - 40px);
+  overflow-y: auto;
+  background-color: white;
+}
+
+
+.chat-input {
+  color: #B4B7BF;
+  background-color: #F7F7F7;
+  height: 50px;
+  width: calc(100% - 40px);
+  border: 0px;
+  font-size: 1.1em;
+  margin-left: 20px;
+  outline: none;
+  margin-bottom: 0px !important;
+}
+
+.gangster .content {
+    color: red;
+}

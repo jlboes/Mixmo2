@@ -1,0 +1,11 @@
+    <table class="letters-table">
+        <tr id="letters-row">
+            {% for letter in letters %}
+                <td data-id="{{ letter.id }}" data-joker="{{ letter.joker?'1':'' }}" data-gangster="{{ letter.gangster?'1':'' }}" class="letterTile notOnBoard">
+                    <div class="board-tile text-center">
+                        {{ letter.value }}
+                    </div>
+                </td>
+            {% endfor %}
+        </tr>
+    </table>

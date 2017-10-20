@@ -1,0 +1,72 @@
+mixmo-php:
+    image: docker.netapsys.fr/debian8-apache2-php56
+    environment:
+        - VIRTUAL_HOST=${MIXMO_SERVER_NAME}
+        - VIRTUAL_PORT=80
+        - ROLLBAR_ENV=${ROLLBAR_ENV}
+        - ROLLBAR_KEY=${ROLLBAR_KEY}        
+        - SOCKETIO_URL=${SOCKETIO_URL}
+        - ENABLE_BROWSERSYNC=${ENABLE_BROWSERSYNC}
+        - GRAPHQL_ENDPOINT=${GRAPHQL_ENDPOINT}
+        - NODEJS_ENDPOINT=${NODEJS_ENDPOINT}        
+        - LOGGER_LEVEL=${LOGGER_LEVEL}
+    volumes:
+        - ./src/php/www:/var/www
+        - ./src/php:/data/src
+        - ./conf/apache:/etc/apache2/sites-enabled
+        - ./conf/apache/conf-available:/etc/apache2/sites-available
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+    links:
+        - mixmo-node:mixmonode
+        - mixmo-redis:mixmoredis
+mixmo-node:
+    image: "${DOCKER_NODE}"
+    environment:
+        - VIRTUAL_HOST=${MIXMO_NODE_SERVER_NAME}
+        - GRAPHQL_ENDPOINT=${GRAPHQL_ENDPOINT}
+        - ROLLBAR_KEY=${ROLLBAR_KEY}
+        - ROLLBAR_ENV=${ROLLBAR_ENV}
+    ports:
+        - "9090:9090"
+        - "26300:26300"
+        - "3000:3000"
+        - "3001:3001"
+        - "3002:3002"
+        - "3003:3003"
+    volumes:
+        - ./src/node:/data
+        - ./src/php/scss:/data/scss
+        - ./src/php/js-src:/data/js-src
+        - ./src/php/views:/data/views
+        - ./src/php/www/css:/data/css
+        - ./src/php/www/js:/data/js
+    command: npm start ${DOCKER_ENV}
+mixmo-redis:
+    image: redis
+    privileged: true
+mixmo-prometheus:
+    image: prom/prometheus
+    environment:
+        - VIRTUAL_HOST=${MIXMO_PROMETHEUS_SERVER_NAME}
+    volumes:
+        - ./prometheus.yml:/etc/prometheus/prometheus.yml 
+    links:
+        - mixmo-php:mixmophp      
+mixmo-grafana:
+    environment:
+        - VIRTUAL_HOST=${MIXMO_GRAFANA_SERVER_NAME}
+        - VIRTUAL_PORT=3000
+        - GF_SECURITY_ADMIN_USER=${GF_SECURITY_ADMIN_USER}
+        - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD}
+        - GF_SMTP_ENABLED=${GF_SMTP_ENABLED}
+        - GF_SMTP_HOST=${GF_SMTP_HOST}
+        - GF_SMTP_USER=${GF_SMTP_USER}
+        - GF_SMTP_PASSWORD=${GF_SMTP_PASSWORD}
+        - GF_SMTP_FROM_ADDRESS=${GF_SMTP_FROM_ADDRESS}
+    image: grafana/grafana
+    volumes:
+        - /var/lib/grafana:/var/lib/grafana
+    links:
+        - mixmo-prometheus:mixmoprometheus  
+  
+

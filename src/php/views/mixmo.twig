@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="css/chat.css">
+    <link rel="stylesheet" type="text/css" href="css/mixmo.css">
+    <link rel="stylesheet" type="text/css" href="css/playersPopin.css">
+{% endblock %}
+
+{% block body %}
+    <div class="off-canvas position-bottom" id="offCanvasJoker" data-off-canvas data-transition="overlap">
+        <!-- Your menu or Off-canvas content goes here -->
+        {% include 'letterSelector.twig' %}
+    </div>
+    <div class="off-canvas position-bottom" id="offCanvasGangster" data-off-canvas data-transition="overlap">
+        <!-- Your menu or Off-canvas content goes here -->
+        {% include 'gangsterLetterSelector.twig' %}
+    </div>
+    <div class="off-canvas position-right" id="offCanvasChatCommands" data-off-canvas data-transition="overlap">
+        <!-- Your menu or Off-canvas content goes here -->
+        {% include 'chatCommands.twig' %}
+    </div>
+    <div>
+        <div class="off-canvas-content" data-off-canvas-content data-sticky-container>
+            {% set letters = gameDataArray.data.Game.players[0].letters %}
+            <input type="hidden" id="userId" value="{{ user.id }}">
+            <input type="hidden" id="userEmail" value="{{ user.email }}">
+            <input type="hidden" id="gameId" value="{{ gameDataArray.data.Game.id }}">
+            
+            <div class="expanded row sticky" data-sticky data-top-anchor="100" data-margin-top="0">
+                <div class=" small-12  column ">
+                    <div class="expanded row">
+                        <div class="small-12 large-5 columns">
+                            <div class="row">
+                                <div class="columns">
+                                    {% include 'actionBar.twig' %}
+                                </div>
+                                <hr/>
+                            </div>
+                            <div class="row">
+                                <div class="columns large-centered">
+                                    {% include 'turnLeft.twig' %}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="columns large-centered">
+                                    {% include 'boardActionBar.twig' %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large-7 columns">
+                            {% include 'chat.twig' %}
+                            <a href="#" data-toggle="offCanvasChatCommands">Voir les commandes</a>
+                            <a class="button secondary expanded hide-for-medium" data-toggle="chatlog"><i
+                                        class="material-icons">expand_less</i></a>
+                        </div>
+                    </div>
+                    <div class="row expanded align-middle letterBagRow">
+                        <div class="small-12 columns letters-container">
+                            {% include 'letterBar.twig' %}
+                        </div>
+                        <div class="columns game-view-separator">
+                            <hr/>
+                        </div>
+                    </div>
+                    <div class="row align-middle winnerRow">
+                        <div class="large-12 columns">
+                            <div class="winnerDiv text-center callout success">
+                                <h5><span id="winnerName">JL</span> a gagné la partie !</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="expanded row board align-center">
+                {% include 'board.twig' %}
+            </div>
+			<div>
+				<form method="POST" enctype="multipart/form-data" action="/grids/save/" id ="gridImgDataForm" name="gridImgDataForm">
+					<input type="hidden" id="gridImgData" value="" name="gridImgData" />
+				</form>
+			</div>
+            <div class="expanded row column">
+                {{ gameData }}
+            </div>
+            <div class="expanded row column">
+                {% include 'otherGridPopin.twig' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="js/socket.io.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/html2canvas.js"></script>    
+    <script src="js/jquery.plugin.html2canvas.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/includeSocketIo.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/mixmo.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/otherPlayerGrid.js"></script>
+{% endblock %}

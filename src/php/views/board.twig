@@ -1,0 +1,14 @@
+{% set size = 40 %}
+
+<table id="board-table" class="board-table">
+    {% for x in 0..size %}
+    <tr>
+        {% for y in 0..size %}
+        <td data-x="{{ x }}" data-y="{{ y }}" data-id="" class="dropable">
+            <div class="board-tile">
+            </div>
+        </td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
